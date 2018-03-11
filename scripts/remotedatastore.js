@@ -10,6 +10,7 @@
     this.serverUrl = url;
   }
 
+  //add a new order
   RemoteDataStore.prototype.add = function(key, val) {
     /*$.post(this.serverUrl, val, function(serverResponse) {
       console.log(serverResponse);
@@ -35,6 +36,7 @@
     });
   };
 
+  // get all pending orders
   RemoteDataStore.prototype.getAll = function(cb) {
     /*$.get(this.serverUrl, function(serverResponse) {
       console.log(serverResponse);
@@ -53,7 +55,7 @@
     });
   };
 
-
+  //get an order with key=emailAddress
   RemoteDataStore.prototype.get = function(key, cb) {
     /*$.get(this.serverUrl + "/" + key, function(serverResponse) {
       console.log(serverResponse);
@@ -66,13 +68,15 @@
       success: function(serverResponse) {
         console.log(serverResponse);
 
-        //get id
-        var id;
-        for (var i = 0; i < serverResponse.length; i++) {
+        //get id from emailAddress
+        var id = null, i = 0, l = serverResponse.length;
+        while (id == null && i < l){
           if (serverResponse[i].emailAddress == key) {
             id = serverResponse[i].id;
           }
+          i++;
         }
+
         console.log(id);
 
         $.ajax({
@@ -102,12 +106,13 @@
       success: function(serverResponse) {
         console.log(serverResponse);
 
-        //get id
-        var id;
-        for (var i = 0; i < serverResponse.length; i++) {
+        //get id from emailAddress
+        var id = null, i = 0, l = serverResponse.length;
+        while (id == null && i < l){
           if (serverResponse[i].emailAddress == key) {
             id = serverResponse[i].id;
           }
+          i++;
         }
         console.log(id);
         $.ajax({
